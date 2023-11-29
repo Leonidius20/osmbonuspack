@@ -8,9 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.DisplayMetrics;
 
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-
 import org.osmdroid.util.BoundingBox;
 
 import java.io.FilterInputStream;
@@ -143,9 +140,10 @@ public class BonusPackHelper {
 	}
 
 	public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
-		Drawable drawable = ContextCompat.getDrawable(context, drawableId);
+		Drawable drawable = context.getDrawable(drawableId);
+
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-			drawable = (DrawableCompat.wrap(drawable)).mutate();
+			//drawable = (DrawableCompat.wrap(drawable)).mutate();
 		}
 		Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
 				drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
